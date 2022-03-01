@@ -5,17 +5,16 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class Permanencia {
+public abstract class  Permanencia {
 	
 	private LocalDate dia;
-	private final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/M/yyyy");
+	protected static final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/M/yyyy");
 	
 	private Tramo tramo;
 	
-	public Permanencia(LocalDate dia, Tramo tramo) {
+	public Permanencia(LocalDate dia) {
 
 		setDia(dia);
-		setTramo(tramo);
 
 	}
 
@@ -23,7 +22,6 @@ public class Permanencia {
 		if(copiaPermanencia == null) {
 			throw new NullPointerException("ERROR: No se puede copiar una permanencia nula.");
 		}
-		setTramo(copiaPermanencia.getTramo());
 		setDia(copiaPermanencia.getDia());
 	}
 	
@@ -45,8 +43,14 @@ public class Permanencia {
 		
 		this.dia = dia;
 	}
+	
+	public abstract int getPuntos();
 
-	public Tramo getTramo() {
+	public abstract int hashCode();
+	
+	public abstract boolean equals(Object objeto);
+	
+	/*public Tramo getTramo() {
 		return tramo;
 	}
 
@@ -74,9 +78,11 @@ public class Permanencia {
 		return Objects.equals(dia, other.dia) && tramo == other.tramo;
 	}
 
+	 */
+	
 	@Override
 	public String toString() {
-		return "dia=" + dia.format(FORMATO_DIA) + ", tramo=" + tramo;
+		return "día=" + dia.format(FORMATO_DIA);
 	}
 	
 	

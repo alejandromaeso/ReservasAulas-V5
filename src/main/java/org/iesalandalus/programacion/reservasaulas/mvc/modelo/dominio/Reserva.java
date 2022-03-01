@@ -31,29 +31,34 @@ public class Reserva {
 		setAula(copiaReserva.getAula());
 		setPermanencia(copiaReserva.getPermanencia());
 	}
-
-	public Profesor getProfesor() {
-		return new Profesor(profesor);
-	}
-
+	
 	private void setProfesor(Profesor profesor) {
 		this.profesor = new Profesor(profesor);
 	}
-
-	public Aula getAula() {
-		return new Aula(aula);
+	
+	public Profesor getProfesor() {
+		return new Profesor(profesor);
 	}
 
 	private void setAula(Aula aula) {
 		this.aula = new Aula(aula);
 	}
 
-	public Permanencia getPermanencia() {
-		return new Permanencia(permanencia);
+	public Aula getAula() {
+		return new Aula(aula);
 	}
 
 	private void setPermanencia(Permanencia permanencia) {
 		this.permanencia = new Permanencia(permanencia);
+	}
+
+	public Permanencia getPermanencia() {
+		return new Permanencia(permanencia);
+	}
+	
+	public static Reserva getReservaFicticia(Aula aulaFicticia, Permanencia permanenciaFicticia) {
+		
+		return new Reserva(Profesor.getProfesorFicticio("a@a.es"), aulaFicticia, permanenciaFicticia);
 	}
 
 	@Override
