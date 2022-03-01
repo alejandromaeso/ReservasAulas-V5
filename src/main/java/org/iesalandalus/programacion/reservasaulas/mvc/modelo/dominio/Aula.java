@@ -1,24 +1,28 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Aula {
 	
+	private final static float PUNTOS_POR_PUESTO = (float) 0.5;
+	private final static int MIN_PUESTOS = 10;
+	private final static int MAX_PUESTOS = 50;
 	private String nombre;
-
-	public Aula(String nombre) {
-		setNombre(nombre);
-	}
+	private int puestos;
 	
+
+	public Aula(String nombre, int puestos) {
+		setNombre(nombre);
+		setPuestos(puestos);
+	}
+
 	public Aula(Aula copiaAula) {
 		if(copiaAula == null) {
 			throw new NullPointerException("ERROR: No se puede copiar un aula nula.");
 		}
 		setNombre(copiaAula.getNombre());
-	}
-
-	public String getNombre() {
-		return nombre;
+		setPuestos(copiaAula.getPuestos());
 	}
 
 	private void setNombre(String nombre) {
@@ -30,6 +34,37 @@ public class Aula {
 		}
 		this.nombre = nombre;
 	}
+	
+	public int getPuestos() {
+		return puestos;
+	}
+	
+	private void setPuestos(int puestos) {
+		if(puestos < MIN_PUESTOS) {
+			throw new IllegalArgumentException("ERROR: El número de puestos no es correcto.");
+		}
+		if(puestos > MAX_PUESTOS) {
+			throw new IllegalArgumentException("ERROR: El número de puestos no es correcto.");
+		}
+		this.puestos = puestos;
+	}
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+	public float getPuntos() {
+		
+		return PUNTOS_POR_PUESTO * puestos;
+	}
+	
+	public static Aula getAulaFicticia(String nombreAulaFicticia) {
+		
+		Random generador = new Random();
+		
+		return new Aula(nombreAulaFicticia, generador.nextInt(MAX_PUESTOS) + MIN_PUESTOS);
+	}	
+
 
 	@Override
 	public int hashCode() {
@@ -50,7 +85,7 @@ public class Aula {
 
 	@Override
 	public String toString() {
-		return "nombre Aula=" + nombre;
+		return "nombre=" + nombre + ", puestos=" + puestos;
 	}
 
 }
