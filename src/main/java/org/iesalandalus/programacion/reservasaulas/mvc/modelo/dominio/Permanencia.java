@@ -10,8 +10,6 @@ public abstract class  Permanencia {
 	private LocalDate dia;
 	protected static final DateTimeFormatter FORMATO_DIA = DateTimeFormatter.ofPattern("dd/M/yyyy");
 	
-	private Tramo tramo;
-	
 	public Permanencia(LocalDate dia) {
 
 		setDia(dia);
