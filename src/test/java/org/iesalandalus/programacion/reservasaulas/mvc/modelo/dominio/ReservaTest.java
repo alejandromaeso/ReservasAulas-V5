@@ -12,7 +12,6 @@ import java.time.LocalTime;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-
 public class ReservaTest {
 	
 	private static final String ERROR_PROFESOR_NULO = "ERROR: La reserva debe estar a nombre de un profesor.";
@@ -37,6 +36,8 @@ public class ReservaTest {
 	private static Aula aula;
 	private static Permanencia permanenciaTramo;
 	private static Permanencia permanenciaHora;
+	private static Permanencia permanenciaTramoValido;
+	private static Permanencia permanenciaHoraValido;
 	
 	@BeforeClass
 	public static void asignarValoresAtributos() {
@@ -44,31 +45,33 @@ public class ReservaTest {
 		aula = new Aula("Aula 1", 30);
 		permanenciaTramo = new PermanenciaPorTramo(LocalDate.now(), Tramo.MANANA);
 		permanenciaHora = new PermanenciaPorHora(LocalDate.now(), LocalTime.of(12, 0));
+		permanenciaTramoValido = new PermanenciaPorTramo(LocalDate.now().plusMonths(1), Tramo.MANANA);
+		permanenciaHoraValido = new PermanenciaPorHora(LocalDate.now().plusMonths(1), LocalTime.of(12, 0));
 	}
 
 	@Test
 	public void constructorProfesorValidoAulaValidaPermanenciaValidaCreaReservaCorrectamente() {
-		Reserva reserva = new Reserva(profesor, aula, permanenciaTramo);
+		Reserva reserva = new Reserva(profesor, aula, permanenciaTramoValido);
 		assertThat(PROFESOR_NO_ESPERADO, reserva.getProfesor(), is(profesor));
 		assertThat(REFERENCIA_NO_ESPERADA, reserva.getProfesor(), not(sameInstance(profesor)));
 		assertThat(AULA_NO_ESPERADA, reserva.getAula(), is(aula));
 		assertThat(REFERENCIA_NO_ESPERADA, reserva.getAula(), not(sameInstance(aula)));
-		assertThat(PERMANENCIA_NO_ESPERADA, reserva.getPermanencia(), is(permanenciaTramo));
-		assertThat(REFERENCIA_NO_ESPERADA, reserva.getPermanencia(), not(sameInstance(permanenciaTramo)));
-		reserva = new Reserva(profesor, aula, permanenciaHora);
+		assertThat(PERMANENCIA_NO_ESPERADA, reserva.getPermanencia(), is(permanenciaTramoValido));
+		assertThat(REFERENCIA_NO_ESPERADA, reserva.getPermanencia(), not(sameInstance(permanenciaTramoValido)));
+		reserva = new Reserva(profesor, aula, permanenciaHoraValido);
 		assertThat(PROFESOR_NO_ESPERADO, reserva.getProfesor(), is(profesor));
 		assertThat(REFERENCIA_NO_ESPERADA, reserva.getProfesor(), not(sameInstance(profesor)));
 		assertThat(AULA_NO_ESPERADA, reserva.getAula(), is(aula));
 		assertThat(REFERENCIA_NO_ESPERADA, reserva.getAula(), not(sameInstance(aula)));
-		assertThat(PERMANENCIA_NO_ESPERADA, reserva.getPermanencia(), is(permanenciaHora));
-		assertThat(REFERENCIA_NO_ESPERADA, reserva.getPermanencia(), not(sameInstance(permanenciaHora)));
+		assertThat(PERMANENCIA_NO_ESPERADA, reserva.getPermanencia(), is(permanenciaHoraValido));
+		assertThat(REFERENCIA_NO_ESPERADA, reserva.getPermanencia(), not(sameInstance(permanenciaHoraValido)));
 	}
 	
 	@Test
 	public void constructorProfesorNoValidoAulaValidaPermanenciaValidaLanzaExcepcion() {
 		Reserva reserva = null;
 		try {
-			reserva = new Reserva(null, aula, permanenciaTramo);
+			reserva = new Reserva(null, aula, permanenciaTramoValido);
 			fail(PROFESOR_INCORRECTO);
 		} catch (NullPointerException e) {
 			assertThat(MENSAJE_NO_CORRECTO, e.getMessage(), is(ERROR_PROFESOR_NULO));
@@ -82,7 +85,7 @@ public class ReservaTest {
 	public void constructorProfesorValidoAulaNoValidaPermanenciaValidaLanzaExcepcion() {
 		Reserva reserva = null;
 		try {
-			reserva = new Reserva(profesor, null, permanenciaTramo);
+			reserva = new Reserva(profesor, null, permanenciaTramoValido);
 			fail(AULA_INCORRECTA);
 		} catch (NullPointerException e) {
 			assertThat(MENSAJE_NO_CORRECTO, e.getMessage(), is(ERROR_AULA_NULA));
@@ -108,7 +111,7 @@ public class ReservaTest {
 	
 	@Test
 	public void constructorReservaValidaCopiaReservaCorrectamente() {
-		Reserva reserva1 = new Reserva(profesor, aula, permanenciaTramo);
+		Reserva reserva1 = new Reserva(profesor, aula, permanenciaTramoValido);
 		Reserva reserva2 = new Reserva(reserva1);
 		assertThat(RESERVA_NO_ESPERADA, reserva2, is(reserva1));
 		assertThat(REFERENCIA_NO_ESPERADA, reserva2, not(sameInstance(reserva1)));
@@ -116,9 +119,9 @@ public class ReservaTest {
 		assertThat(REFERENCIA_NO_ESPERADA, reserva2.getProfesor(), not(sameInstance(profesor)));
 		assertThat(AULA_NO_ESPERADA, reserva2.getAula(), is(aula));
 		assertThat(REFERENCIA_NO_ESPERADA, reserva2.getAula(), not(sameInstance(aula)));
-		assertThat(PERMANENCIA_NO_ESPERADA, reserva2.getPermanencia(), is(permanenciaTramo));
-		assertThat(REFERENCIA_NO_ESPERADA, reserva2.getPermanencia(), not(sameInstance(permanenciaTramo)));
-		reserva1 = new Reserva(profesor, aula, permanenciaHora);
+		assertThat(PERMANENCIA_NO_ESPERADA, reserva2.getPermanencia(), is(permanenciaTramoValido));
+		assertThat(REFERENCIA_NO_ESPERADA, reserva2.getPermanencia(), not(sameInstance(permanenciaTramoValido)));
+		reserva1 = new Reserva(profesor, aula, permanenciaHoraValido);
 		reserva2 = new Reserva(reserva1);
 		assertThat(RESERVA_NO_ESPERADA, reserva2, is(reserva1));
 		assertThat(REFERENCIA_NO_ESPERADA, reserva2, not(sameInstance(reserva1)));
@@ -126,25 +129,25 @@ public class ReservaTest {
 		assertThat(REFERENCIA_NO_ESPERADA, reserva2.getProfesor(), not(sameInstance(profesor)));
 		assertThat(AULA_NO_ESPERADA, reserva2.getAula(), is(aula));
 		assertThat(REFERENCIA_NO_ESPERADA, reserva2.getAula(), not(sameInstance(aula)));
-		assertThat(PERMANENCIA_NO_ESPERADA, reserva2.getPermanencia(), is(permanenciaHora));
-		assertThat(REFERENCIA_NO_ESPERADA, reserva2.getPermanencia(), not(sameInstance(permanenciaHora)));
+		assertThat(PERMANENCIA_NO_ESPERADA, reserva2.getPermanencia(), is(permanenciaHoraValido));
+		assertThat(REFERENCIA_NO_ESPERADA, reserva2.getPermanencia(), not(sameInstance(permanenciaHoraValido)));
 	}
 	
 	@Test
 	public void getReservaFicticiaAulaCorrectaPermanenciaCorrectaDevuelveReservaCorrecta() {
-		Reserva reserva = Reserva.getReservaFicticia(aula, permanenciaTramo);
+		Reserva reserva = Reserva.getReservaFicticia(aula, permanenciaTramoValido);
 		assertThat(AULA_NO_ESPERADA, reserva.getAula(), is(aula));
-		assertThat(PERMANENCIA_NO_ESPERADA, reserva.getPermanencia(), is(permanenciaTramo));
-		reserva = Reserva.getReservaFicticia(aula, permanenciaHora);
+		assertThat(PERMANENCIA_NO_ESPERADA, reserva.getPermanencia(), is(permanenciaTramoValido));
+		reserva = Reserva.getReservaFicticia(aula, permanenciaHoraValido);
 		assertThat(AULA_NO_ESPERADA, reserva.getAula(), is(aula));
-		assertThat(PERMANENCIA_NO_ESPERADA, reserva.getPermanencia(), is(permanenciaHora));
+		assertThat(PERMANENCIA_NO_ESPERADA, reserva.getPermanencia(), is(permanenciaHoraValido));
 	}
 	
 	@Test
 	public void getReservaFicticiaAulaNoValidaPermanenciaValidaLanzaExcepcion() {
 		Reserva reserva = null;
 		try {
-			reserva = Reserva.getReservaFicticia(null, permanenciaTramo);
+			reserva = Reserva.getReservaFicticia(null, permanenciaTramoValido);
 			fail(AULA_INCORRECTA);
 		} catch (NullPointerException e) {
 			assertThat(MENSAJE_NO_CORRECTO, e.getMessage(), is(ERROR_AULA_NULA));
@@ -186,18 +189,18 @@ public class ReservaTest {
 	
 	@Test
 	public void getPuntosDevuelveCorrectamenteLosPuntos() {
-		Reserva reserva = new Reserva(profesor, aula, permanenciaTramo);
+		Reserva reserva = new Reserva(profesor, aula, permanenciaTramoValido);
 		assertThat(PUNTOS_NO_ESPERADOS, reserva.getPuntos(), is(25.0F));
-		reserva = new Reserva(profesor, aula, permanenciaHora);
+		reserva = new Reserva(profesor, aula, permanenciaHoraValido);
 		assertThat(PUNTOS_NO_ESPERADOS, reserva.getPuntos(), is(18.0F));
 	}
 	
 	@Test
 	public void toStringDevuelveLaCadenaEsperada() {
-		Reserva reserva = new Reserva(profesor, aula, permanenciaTramo);
-		assertThat(CADENA_NO_ESPERADA, reserva.toString(), is(String.format("%s, %s, %s, puntos=%.1f", profesor, aula, permanenciaTramo, 25.0)));
-		reserva = new Reserva(profesor, aula, permanenciaHora);
-		assertThat(CADENA_NO_ESPERADA, reserva.toString(), is(String.format("%s, %s, %s, puntos=%.1f", profesor, aula, permanenciaHora, 18.0)));
+		Reserva reserva = new Reserva(profesor, aula, permanenciaTramoValido);
+		assertThat(CADENA_NO_ESPERADA, reserva.toString(), is(String.format("%s, %s, %s, puntos=%.1f", profesor, aula, permanenciaTramoValido, 25.0)));
+		reserva = new Reserva(profesor, aula, permanenciaHoraValido);
+		assertThat(CADENA_NO_ESPERADA, reserva.toString(), is(String.format("%s, %s, %s, puntos=%.1f", profesor, aula, permanenciaHoraValido, 18.0)));
 	}
 
 }

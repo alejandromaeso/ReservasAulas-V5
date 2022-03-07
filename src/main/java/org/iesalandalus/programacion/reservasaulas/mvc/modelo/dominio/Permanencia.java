@@ -48,36 +48,6 @@ public abstract class  Permanencia {
 	
 	public abstract boolean equals(Object objeto);
 	
-	/*public Tramo getTramo() {
-		return tramo;
-	}
-
-	private void setTramo(Tramo tramo) {
-		if(tramo == null) {
-			throw new NullPointerException("ERROR: El tramo de una permanencia no puede ser nulo.");
-		}
-		this.tramo = tramo;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(dia, tramo);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Permanencia other = (Permanencia) obj;
-		return Objects.equals(dia, other.dia) && tramo == other.tramo;
-	}
-
-	 */
-	
 	@Override
 	public String toString() {
 		return "día=" + dia.format(FORMATO_DIA);

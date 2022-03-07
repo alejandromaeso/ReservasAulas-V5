@@ -2,12 +2,15 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 
 import javax.naming.OperationNotSupportedException;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
 
-public class Profesores {
+public class Profesores implements IProfesores {
 
 	private List<Profesor> coleccionProfesores;
 
@@ -16,25 +19,17 @@ public class Profesores {
 		coleccionProfesores = new ArrayList<>();
 	}
 
-	public Profesores(Profesores profesores) {
+	public Profesores(IProfesores profesores) {
 
 		setProfesores(profesores);
 
 	}
 
-	private void setProfesores(Profesores profesores) {
+	private void setProfesores(IProfesores profesores) {
 
 		if (profesores == null) {
 			throw new NullPointerException("ERROR: No se pueden copiar profesores nulos.");
 		}
-
-		// CON ESTA COMPROBACIÓN VERIFICAR�?AMOS QUE NO ESTABLEZCA UN LISTADO VAC�?O
-		// LA COMENTO PORQUE FALLAN LOS TEST:
-		/*
-		 * if (profesores.getProfesores().isEmpty()) { throw new
-		 * IllegalArgumentException("ERROR: La lista de profesores no puede estar vacía."
-		 * ); }
-		 */
 
 		coleccionProfesores = profesores.getProfesores();
 	}
@@ -55,7 +50,7 @@ public class Profesores {
 		while (iterador.hasNext()) {
 			copiaProfesores.add(new Profesor(iterador.next()));
 		}
-
+		Collections.sort(copiaProfesores);
 		return copiaProfesores;
 	}
 
@@ -68,7 +63,7 @@ public class Profesores {
 		if (!coleccionProfesores.contains(insertarProfesor)) {
 			coleccionProfesores.add(insertarProfesor);
 		} else {
-			throw new OperationNotSupportedException("ERROR: Ya existe un profesor con ese nombre.");
+			throw new OperationNotSupportedException("ERROR: Ya existe un profesor con ese correo.");
 		}
 
 	}
@@ -98,7 +93,7 @@ public class Profesores {
 		if (coleccionProfesores.contains(borrarProfesor)) {
 			coleccionProfesores.remove(borrarProfesor);
 		} else {
-			throw new OperationNotSupportedException("ERROR: No existe ningún profesor con ese nombre.");
+			throw new OperationNotSupportedException("ERROR: No existe ningún profesor con ese correo.");
 		}
 
 	}

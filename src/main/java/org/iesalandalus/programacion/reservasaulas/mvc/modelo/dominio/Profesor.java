@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
 import java.util.Objects;
 
-public class Profesor {
+public class Profesor implements Comparable<Profesor> {
 
 	private final String ER_TELEFONO = "^(6|9){1}(1|2|3|4|5|6|7|8|9|0){8}$";
 	private final String ER_CORREO = "^.{1,}@.{1,}\\.[0-9a-zA-Z]{1,}$";
@@ -37,8 +37,9 @@ public class Profesor {
 		}
 		if (nombre.isBlank()) {
 			throw new IllegalArgumentException("ERROR: El nombre del profesor no puede estar vacío.");
-		}
-		this.nombre = formateaNombre(nombre);
+		} else {
+			this.nombre = formateaNombre(nombre);
+		}	
 	}
 
 	//Clase formatea nombre
@@ -119,6 +120,11 @@ public class Profesor {
 		}
 
 		return "nombre=" + formateaNombre(nombre) + ", correo=" + correo + ", teléfono=" + telefono;
+	}
+
+	@Override
+	public int compareTo(Profesor o) {
+		return getCorreo().compareTo(o.getCorreo());
 	}
 
 }

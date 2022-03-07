@@ -48,7 +48,7 @@ public class PermanenciaPorTramo extends Permanencia {
 		if (getClass() != obj.getClass())
 			return false;
 		PermanenciaPorTramo other = (PermanenciaPorTramo) obj;
-		return tramo == other.tramo;
+		return super.getDia().equals(other.getDia()) && this.tramo == other.tramo;
 	}
 
 	@Override

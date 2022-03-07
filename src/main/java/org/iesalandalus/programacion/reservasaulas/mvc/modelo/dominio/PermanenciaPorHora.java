@@ -21,9 +21,7 @@ public class PermanenciaPorHora extends Permanencia {
 	
 	public PermanenciaPorHora(PermanenciaPorHora copiaPermanenciaPorHora) {
 		super(copiaPermanenciaPorHora);		
-		setHora(copiaPermanenciaPorHora.getHora());
-		
-		
+		setHora(copiaPermanenciaPorHora.getHora());		
 	}
 	
 	public LocalTime getHora() {
@@ -65,7 +63,7 @@ public class PermanenciaPorHora extends Permanencia {
 		if (getClass() != obj.getClass())
 			return false;
 		PermanenciaPorHora other = (PermanenciaPorHora) obj;
-		return Objects.equals(hora, other.hora);
+		return super.getDia().equals(other.getDia()) && Objects.equals(hora, other.hora);
 	}
 
 	@Override

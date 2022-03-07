@@ -1,13 +1,17 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
 import javax.naming.OperationNotSupportedException;
 import java.util.Iterator;
 import java.util.List;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IAulas;
 
-public class Aulas {
+public class Aulas implements IAulas {
 
 	private List<Aula> coleccionAulas;
 
@@ -16,28 +20,19 @@ public class Aulas {
 		coleccionAulas = new ArrayList<Aula>();
 	}
 
-	public Aulas(Aulas aulas) {
+	public Aulas(IAulas aulas) {
 		setAulas(aulas);
 	}
 
-	private void setAulas(Aulas aulas) {
+	private void setAulas(IAulas aulas) {
 		if (aulas == null) {
 			throw new NullPointerException("ERROR: No se pueden copiar aulas nulas.");
 		}
-
-		// CON ESTA COMPROBACIÃ“N VERIFICARÃ?AMOS QUE NO ESTABLEZCA UN LISTADO VACÃ?O
-		// LA COMENTO PORQUE FALLAN LOS TEST:
-		/*
-		 * if (aulas.getAulas().isEmpty()) { throw new
-		 * IllegalArgumentException("ERROR: La lista de aulas no puede estar vacÃ­a."); }
-		 */
 
 		coleccionAulas = aulas.getAulas();
 	}
 
 	public List<Aula> getAulas() {
-
-		// Devuelvo una copia para evitar el aliasing
 
 		return copiaProfundaAulas(coleccionAulas);
 	}
@@ -48,6 +43,7 @@ public class Aulas {
 		while (iterador.hasNext()) {
 			copiaAulas.add(new Aula(iterador.next()));
 		}
+		Collections.sort(copiaAulas);
 		return copiaAulas;
 	}
 
@@ -107,5 +103,7 @@ public class Aulas {
 
 		return representacion;
 	}
-
 }
+	 
+
+

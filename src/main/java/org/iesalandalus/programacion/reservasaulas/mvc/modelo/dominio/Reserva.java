@@ -1,41 +1,43 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
-public class Reserva {
-	
+public class Reserva implements Comparable<Reserva> {
+
 	private Profesor profesor;
 	private Aula aula;
 	private Permanencia permanencia;
-	
-	public Reserva(Profesor profesor, Aula aula, Permanencia permanencia){
-		if(profesor == null) {
+
+	public Reserva(Profesor profesor, Aula aula, Permanencia permanencia) {
+		if (profesor == null) {
 			throw new NullPointerException("ERROR: La reserva debe estar a nombre de un profesor.");
 		}
-		if(aula == null) {
+		if (aula == null) {
 			throw new NullPointerException("ERROR: La reserva debe ser para un aula concreta.");
 		}
-		if(permanencia == null) {
+		if (permanencia == null) {
 			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
 		}
+
 		setProfesor(profesor);
 		setAula(aula);
 		setPermanencia(permanencia);
 	}
 
-	public Reserva(Reserva copiaReserva){
-		if(copiaReserva == null) {
+	public Reserva(Reserva copiaReserva) {
+		if (copiaReserva == null) {
 			throw new NullPointerException("ERROR: No se puede copiar una reserva nula.");
 		}
 		setProfesor(copiaReserva.getProfesor());
 		setAula(copiaReserva.getAula());
 		setPermanencia(copiaReserva.getPermanencia());
 	}
-	
+
 	private void setProfesor(Profesor profesor) {
 		this.profesor = new Profesor(profesor);
 	}
-	
+
 	public Profesor getProfesor() {
 		return new Profesor(profesor);
 	}
@@ -49,16 +51,29 @@ public class Reserva {
 	}
 
 	private void setPermanencia(Permanencia permanencia) {
-		this.permanencia = new Permanencia(permanencia);
+
+		if (permanencia == null) {
+			throw new NullPointerException("ERROR: La reserva se debe hacer para una permanencia concreta.");
+		}
+		if (permanencia instanceof PermanenciaPorTramo) {
+			this.permanencia = new PermanenciaPorTramo((PermanenciaPorTramo) permanencia);
+		} else if (permanencia instanceof PermanenciaPorHora) {
+			this.permanencia = new PermanenciaPorHora((PermanenciaPorHora) permanencia);
+		}
 	}
 
 	public Permanencia getPermanencia() {
-		return new Permanencia(permanencia);
+
+		return permanencia;
 	}
-	
+
 	public static Reserva getReservaFicticia(Aula aulaFicticia, Permanencia permanenciaFicticia) {
-		
+
 		return new Reserva(Profesor.getProfesorFicticio("a@a.es"), aulaFicticia, permanenciaFicticia);
+	}
+
+	public float getPuntos() {
+		return permanencia.getPuntos() + aula.getPuntos();
 	}
 
 	@Override
@@ -75,14 +90,42 @@ public class Reserva {
 		if (getClass() != obj.getClass())
 			return false;
 		Reserva other = (Reserva) obj;
-		return Objects.equals(aula, other.aula) && Objects.equals(permanencia, other.permanencia);				
+		return Objects.equals(aula, other.aula) && Objects.equals(permanencia, other.permanencia);
 	}
 
 	@Override
 	public String toString() {
-		return "Profesor=" + profesor + ", aula=" + aula + ", permanencia=" + permanencia;
+		return String.format("%s, %s, %s, puntos=%.1f", profesor, aula, permanencia, getPuntos());
 	}
-	
-	
+
+	@Override
+	public int compareTo(Reserva o) {
+		int comparadorAula = getAula().getNombre().compareTo(o.getAula().getNombre());
+
+		if (comparadorAula == 0) {
+
+			int comparadorFecha = getPermanencia().getDia().compareTo(o.getPermanencia().getDia());
+			if (comparadorFecha == 0) {
+				if (getPermanencia() instanceof PermanenciaPorTramo
+						&& o.getPermanencia() instanceof PermanenciaPorTramo) {
+					if (((PermanenciaPorTramo) getPermanencia()).getTramo() == Tramo.MANANA
+							&& ((PermanenciaPorTramo) o.getPermanencia()).getTramo() == Tramo.TARDE) {
+						return -1;
+					} else if (((PermanenciaPorTramo) getPermanencia()).getTramo() == Tramo.TARDE
+							&& ((PermanenciaPorTramo) o.getPermanencia()).getTramo() == Tramo.MANANA) {
+						return 1;
+					} else {
+						return 0;
+					}
+				} else {
+					return ((PermanenciaPorHora) getPermanencia()).getHora()
+							.compareTo(((PermanenciaPorHora) o.getPermanencia()).getHora());
+				}
+			}
+			return comparadorFecha;
+
+		}
+		return comparadorAula;
+	}
 
 }
