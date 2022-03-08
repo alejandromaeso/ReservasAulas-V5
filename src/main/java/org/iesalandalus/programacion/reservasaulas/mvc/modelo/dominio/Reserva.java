@@ -1,6 +1,5 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
-import java.time.LocalDate;
 import java.util.Objects;
 
 public class Reserva implements Comparable<Reserva> {

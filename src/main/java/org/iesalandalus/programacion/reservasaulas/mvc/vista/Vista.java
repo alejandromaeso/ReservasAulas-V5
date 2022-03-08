@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.reservasaulas.mvc.controlador.Controlador;
+import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
@@ -13,19 +13,17 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
 public class Vista implements IVista {
 
-	/*
-	 * private final String ERROR = ""; private final String NOMBRE_VALIDO = "";
-	 * private final String CORREO_VALIDO = "";
-	 */
-
-	private Controlador controlador;
+	private static final String ERROR = "aa";
+	private static final String NOMBRE_VALIDO = "A";
+	private static final String CORREO_VALIDO = "^.{1,}@.{1,}\\\\.[0-9a-zA-Z]{1,}$";
+	private IControlador controlador;
 
 	public Vista() {
 
 	}
 
 	@Override
-	public void setControlador(Controlador controlador) {
+	public void setControlador(IControlador controlador) {
 
 		this.controlador = controlador;
 	}
@@ -183,7 +181,7 @@ public class Vista implements IVista {
 		}
 	}
 
-	private Reserva leerReserva(Profesor profesor) {
+	/*private Reserva leerReserva(Profesor profesor) {
 		Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
 		Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
 		Reserva reserva = null;
@@ -194,12 +192,13 @@ public class Vista implements IVista {
 
 		}
 		return reserva;
-	}
+	}*/
 
 	public void anularReserva() {
 
 		try {
-			controlador.anularReserva(leerReserva(Consola.leerProfesor()));
+			//controlador.anularReserva(leerReserva(Consola.leerProfesor()));
+			controlador.anularReserva(Consola.leerReservaFicticia());
 			System.out.println("Reserva anulada correctamente.");
 		} catch (NullPointerException e) {
 			System.out.println(e.getMessage());
@@ -280,7 +279,7 @@ public class Vista implements IVista {
 
 	}
 
-	public void listarReservaPermanencia() {
+	/*public void listarReservaPermanencia() {
 		try {
 
 			Consola.mostrarCabecera("Listado de reservas existentes por permanencia: ");
@@ -304,12 +303,13 @@ public class Vista implements IVista {
 			System.out.println(e.getMessage());
 		}
 
-	}
+	}*/
 
 	public void consultarDisponibilidad() {
 		try {
 
-			Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
+			//Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
+			Aula aula = Consola.leerAulaFicticia();
 			Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
 			if (aulaBuscar == null) {
 				System.out.println("El aula introducida no existe.");

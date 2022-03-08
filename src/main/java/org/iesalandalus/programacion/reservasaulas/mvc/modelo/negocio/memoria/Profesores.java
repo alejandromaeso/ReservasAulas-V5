@@ -3,7 +3,6 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 
 import javax.naming.OperationNotSupportedException;
@@ -34,10 +33,12 @@ public class Profesores implements IProfesores {
 		coleccionProfesores = profesores.getProfesores();
 	}
 
+	@Override
 	public List<Profesor> getProfesores() {
 		return copiaProfundaProfesores(coleccionProfesores);
 	}
-
+	
+	@Override
 	public int getNumProfesores() {
 
 		return coleccionProfesores.size();
@@ -54,6 +55,7 @@ public class Profesores implements IProfesores {
 		return copiaProfesores;
 	}
 
+	@Override
 	public void insertar(Profesor insertarProfesor) throws OperationNotSupportedException {
 
 		if (insertarProfesor == null) {
@@ -68,6 +70,7 @@ public class Profesores implements IProfesores {
 
 	}
 
+	@Override
 	public Profesor buscar(Profesor buscarProfesor) {
 		if (buscarProfesor == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un profesor nulo.");
@@ -85,6 +88,7 @@ public class Profesores implements IProfesores {
 
 	}
 
+	@Override
 	public void borrar(Profesor borrarProfesor) throws OperationNotSupportedException {
 		if (borrarProfesor == null) {
 			throw new NullPointerException("ERROR: No se puede borrar un profesor nulo.");
@@ -98,6 +102,7 @@ public class Profesores implements IProfesores {
 
 	}
 
+	@Override
 	public List<String> representar() {
 		List<String> representacion = new ArrayList<String>();
 		Iterator<Profesor> iterador = coleccionProfesores.iterator();

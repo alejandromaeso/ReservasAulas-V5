@@ -2,7 +2,7 @@ package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
+
 
 import javax.naming.OperationNotSupportedException;
 import java.util.Iterator;
@@ -32,6 +32,7 @@ public class Aulas implements IAulas {
 		coleccionAulas = aulas.getAulas();
 	}
 
+	@Override
 	public List<Aula> getAulas() {
 
 		return copiaProfundaAulas(coleccionAulas);
@@ -47,11 +48,13 @@ public class Aulas implements IAulas {
 		return copiaAulas;
 	}
 
+	@Override
 	public int getNumAulas() {
 		return coleccionAulas.size();
 
 	}
 
+	@Override
 	public void insertar(Aula insertarAula) throws OperationNotSupportedException {
 		if (insertarAula == null) {
 			throw new NullPointerException("ERROR: No se puede insertar un aula nula.");
@@ -64,7 +67,8 @@ public class Aulas implements IAulas {
 		}
 
 	}
-
+	
+	@Override
 	public Aula buscar(Aula buscarAula) {
 		if (buscarAula == null) {
 			throw new NullPointerException("ERROR: No se puede buscar un aula nula.");
@@ -80,6 +84,7 @@ public class Aulas implements IAulas {
 		return null;
 	}
 
+	@Override
 	public void borrar(Aula borrarAula) throws OperationNotSupportedException {
 		if (borrarAula == null) {
 			throw new NullPointerException("ERROR: No se puede borrar un aula nula.");
@@ -93,6 +98,7 @@ public class Aulas implements IAulas {
 
 	}
 
+	@Override
 	public List<String> representar() {
 		List<String> representacion = new ArrayList<String>();
 		Iterator<Aula> iterador = coleccionAulas.iterator();

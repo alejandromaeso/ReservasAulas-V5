@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -16,7 +15,6 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanenci
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.PermanenciaPorTramo;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Tramo;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
 public class Reservas implements IReservas {
@@ -51,14 +49,17 @@ public class Reservas implements IReservas {
 		return copiaReservas;
 	}
 
+	@Override
 	public List<Reserva> getReservas() {
 		return copiaProfundaReservas(coleccionReservas);
 	}
 
+	@Override
 	public int getNumReservas() {
 		return coleccionReservas.size();
 	}
 
+	@Override
 	public void insertar(Reserva reserva) throws OperationNotSupportedException {
 
 		if (reserva == null) {
@@ -162,6 +163,7 @@ public class Reservas implements IReservas {
 		return reservaDia;
 	}
 
+	@Override
 	public Reserva buscar(Reserva buscarReserva) {
 		if (buscarReserva == null) {
 			throw new NullPointerException("ERROR: No se puede buscar una reserva nula.");
@@ -179,6 +181,7 @@ public class Reservas implements IReservas {
 
 	}
 
+	@Override
 	public void borrar(Reserva borrarReserva) throws OperationNotSupportedException {
 		if (borrarReserva == null) {
 			throw new NullPointerException("ERROR: No se puede borrar una reserva nula.");
@@ -199,6 +202,7 @@ public class Reservas implements IReservas {
 
 	}
 
+	@Override
 	public List<String> representar() {
 		List<String> representacion = new ArrayList<String>();
 		Iterator<Reserva> iterador = coleccionReservas.iterator();
@@ -209,6 +213,7 @@ public class Reservas implements IReservas {
 		return representacion;
 	}
 
+	@Override
 	public List<Reserva> getReservasProfesor(Profesor profesor) {
 		if (profesor == null) {
 			throw new NullPointerException("ERROR: El profesor no puede ser nulo.");
@@ -225,6 +230,7 @@ public class Reservas implements IReservas {
 		return reservasProfesor;
 	}
 
+	@Override
 	public List<Reserva> getReservasAula(Aula aula) {
 		if (aula == null) {
 			throw new NullPointerException("ERROR: El aula no puede ser nula.");
@@ -241,6 +247,7 @@ public class Reservas implements IReservas {
 		return reservasAula;
 	}
 
+	@Override
 	public List<Reserva> getReservasPermanencia(Permanencia permanencia) {
 		if (permanencia == null) {
 			throw new NullPointerException("ERROR: La permanencia no puede ser nula.");
@@ -257,6 +264,7 @@ public class Reservas implements IReservas {
 		return reservasPermanencia;
 	}
 
+	@Override
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia) {
 		if (aula == null) {
 			throw new NullPointerException("ERROR: No se puede consultar la disponibilidad de un aula nula.");
