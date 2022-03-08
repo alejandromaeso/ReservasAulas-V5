@@ -42,9 +42,7 @@ public abstract class  Permanencia {
 	}
 	
 	public abstract int getPuntos();
-
 	public abstract int hashCode();
-	
 	public abstract boolean equals(Object objeto);
 	
 	@Override
