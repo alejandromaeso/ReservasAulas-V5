@@ -9,14 +9,14 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Permanencia;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
-import org.iesalandalus.programacion.reservasaulas.mvc.vista.Vista;
+import org.iesalandalus.programacion.reservasaulas.mvc.vista.IVista;
 
 public class Controlador {
 	
-	private Vista vista;
+	private IVista vista;
 	private IModelo modelo;
 
-	public Controlador(IModelo modelo, Vista vista) {
+	public Controlador(IModelo modelo, IVista vista) {
 
 		this.modelo = modelo;
 		this.vista = vista;
