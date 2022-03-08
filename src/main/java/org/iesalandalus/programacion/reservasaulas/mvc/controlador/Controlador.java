@@ -20,6 +20,7 @@ public class Controlador implements IControlador {
 
 		this.modelo = modelo;
 		this.vista = vista;
+		this.vista.setControlador(this);
 	}
 
 	@Override

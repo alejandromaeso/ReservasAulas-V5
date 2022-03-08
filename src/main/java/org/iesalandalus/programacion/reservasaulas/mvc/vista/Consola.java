@@ -55,22 +55,22 @@ public class Consola {
 		String nombre = leerNombreAula();
 		System.out.println("Por favor, introduce el número de puestos del aula: ");
 		int puestos = Entrada.entero();
-		return new Aula(nombre , puestos);
+		return new Aula(nombre, puestos);
 	}
-	
+
 	public static int leerNumeroPuestos() {
-		
+
 		System.out.println("Por favor, introduzca el número de puestos del aula: ");
 		int puestos = Entrada.entero();
-		
+
 		return puestos;
 	}
-	
+
 	public static Aula leerAulaFicticia() {
-		
+
 		System.out.println("Por favor. introduzca el nombre del aula ficticia: ");
 		String nombreAulaFicticia = Entrada.cadena();
-		
+
 		return Aula.getAulaFicticia(nombreAulaFicticia);
 	}
 
@@ -106,7 +106,7 @@ public class Consola {
 		String nombre = Entrada.cadena();
 		return nombre;
 	}
-	
+
 	public static Profesor leerProfesorFicticio() {
 		System.out.println("Por favor, introduzca el correo del profesor ficticio: ");
 		return Profesor.getProfesorFicticio(Entrada.cadena());
@@ -123,14 +123,14 @@ public class Consola {
 	public static LocalDate leerDia() {
 
 		try {
-			System.out.println("Por favor, intrdozuca una fecha: ");
+			System.out.println("Por favor, introduzca una fecha: ");
 			String fechaIntroducida = Entrada.cadena();
 			return LocalDate.parse(fechaIntroducida, FORMATO_DIA);
 		} catch (DateTimeParseException e) {
-			throw new IllegalArgumentException("Formato de fecha incorrecto: dd/MM/yyyy");
+			throw new IllegalArgumentException("ERROR: Formato de fecha incorrecto: dd/MM/yyyy");
 		}
 	}
-	
+
 	public static int elegirPermanencia() {
 		int seleccion;
 		do {
@@ -138,52 +138,49 @@ public class Consola {
 			System.out.println("Para seleccionar permamencia por Tramo: 1");
 			System.out.println("Para seleccionar permamencia por Hora: 2");
 			seleccion = Entrada.entero();
-		} while (seleccion < 1 || seleccion >2);
-		
+		} while (seleccion < 1 || seleccion > 2);
+
 		return seleccion;
 	}
-	
+
 	public static Permanencia leerPermanencia() {
-		
-		int seleccionPermanencia = Consola.elegirPermanencia();
+
+		int seleccionPermanencia = elegirPermanencia();
 		LocalDate dia = leerDia();
 		Permanencia permanencia = null;
 		if (seleccionPermanencia == 1) {
 			Tramo tramo = leerTramo();
 			permanencia = new PermanenciaPorTramo(dia, tramo);
-		} else if (seleccionPermanencia == 2) {
+		} else {
 			LocalTime hora = leerHora();
 			permanencia = new PermanenciaPorHora(dia, hora);
 		}
 		return permanencia;
 	}
-	
+
 	private static LocalTime leerHora() {
-		
-		LocalTime hora = null;
-		String formato = "HH:mm";
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern(formato);
-		System.out.printf("Introduce la hora (%s): ", formato);
-		String horaStr = Entrada.cadena();
 		try {
-			hora = LocalTime.parse(horaStr, dtf);
+			String formatoHora = "HH:mm";
+			DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern(formatoHora);
+			System.out.printf("Introduce la hora (%s): ", formatoHora);
+			String horaString = Entrada.cadena();
+			return LocalTime.parse(horaString, formatoFecha);
 		} catch (DateTimeParseException e) {
-			System.out.println("ERROR: El formato de la hora no es correcto.");
+			throw new IllegalArgumentException("ERROR: Formato de hora incorrecto: HH:mm");
 		}
-		return hora;
 	}
-	
+
 	public static Reserva leerReserva() {
-		
+
 		Profesor profesor = leerProfesorFicticio();
 		Aula aula = leerAulaFicticia();
 		Permanencia permanencia = leerPermanencia();
-		
+
 		return new Reserva(profesor, aula, permanencia);
 	}
-	
+
 	public static Reserva leerReservaFicticia() {
-		
+
 		return Reserva.getReservaFicticia(leerAulaFicticia(), leerPermanencia());
 	}
 }

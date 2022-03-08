@@ -1,5 +1,6 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
+import java.time.DateTimeException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,12 +15,12 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 public class Vista implements IVista {
 
 	private static final String ERROR = "aa";
-	private static final String NOMBRE_VALIDO = "A";
-	private static final String CORREO_VALIDO = "^.{1,}@.{1,}\\\\.[0-9a-zA-Z]{1,}$";
+	private static final String NOMBRE_VALIDO = "Alex";
+	private static final String CORREO_VALIDO = "ponmeun8@gmail.com";
 	private IControlador controlador;
 
 	public Vista() {
-
+		Opcion.setVista(this);
 	}
 
 	@Override
@@ -76,14 +77,20 @@ public class Vista implements IVista {
 	}
 
 	public void buscarAula() {
-
-		Consola.mostrarCabecera("Buscar aula existente: ");
-		Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
-		if (aulaBuscar == null) {
-			System.out.println("El aula introducida no existe.");
-		} else {
-			System.out.println("El aula introducida existe.");
+		try {
+			Consola.mostrarCabecera("Buscar aula existente: ");
+			Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
+			if (aulaBuscar == null) {
+				System.out.println("El aula introducida no existe.");
+			} else {
+				System.out.println("El aula introducida existe.");
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
+
 	}
 
 	public void listarAulas() {
@@ -132,13 +139,19 @@ public class Vista implements IVista {
 
 	public void buscarProfesor() {
 
-		Consola.mostrarCabecera("Buscar profesor existente: ");
+		try {
+			Consola.mostrarCabecera("Buscar profesor existente: ");
 
-		Profesor profesorBuscar = controlador.buscarProfesor(Consola.leerProfesor());
-		if (profesorBuscar == null) {
-			System.out.println("El profesor introducido no existe.");
-		} else {
-			System.out.println("El profesor introducido existe.");
+			Profesor profesorBuscar = controlador.buscarProfesor(Consola.leerProfesor());
+			if (profesorBuscar == null) {
+				System.out.println("El profesor introducido no existe.");
+			} else {
+				System.out.println("El profesor introducido existe.");
+			}
+		} catch (NullPointerException e) {
+			System.out.println(e.getMessage());
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
 		}
 	}
 
@@ -160,18 +173,12 @@ public class Vista implements IVista {
 	public void realizarReserva() {
 
 		try {
-			Profesor profesorBuscar = controlador.buscarProfesor(Consola.leerProfesor());
-			if (profesorBuscar == null) {
-				throw new NullPointerException("El profesor introducido no existe.");
-			} else {
-				Reserva reserva = leerReserva(profesorBuscar);
-				if (reserva == null) {
-					throw new IllegalArgumentException("Error introducido en los datos de la reserva, compruébelos.");
-				}
-				controlador.realizarReserva(reserva);
-				System.out.println("Reserva realizada correctamente.");
+			Reserva reserva = Consola.leerReserva();
+			if (reserva == null) {
+				throw new IllegalArgumentException("Error introducido en los datos de la reserva, compruébelos.");
 			}
-
+			controlador.realizarReserva(reserva);
+			System.out.println("Reserva realizada correctamente.");
 		} catch (NullPointerException e) {
 			System.out.println(e.getMessage());
 		} catch (IllegalArgumentException e) {
@@ -181,23 +188,9 @@ public class Vista implements IVista {
 		}
 	}
 
-	/*private Reserva leerReserva(Profesor profesor) {
-		Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
-		Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
-		Reserva reserva = null;
-		if (aulaBuscar == null) {
-			System.out.println("El aula introducida no existe.");
-		} else {
-			reserva = new Reserva(profesor, aulaBuscar, permanencia);
-
-		}
-		return reserva;
-	}*/
-
 	public void anularReserva() {
 
 		try {
-			//controlador.anularReserva(leerReserva(Consola.leerProfesor()));
 			controlador.anularReserva(Consola.leerReservaFicticia());
 			System.out.println("Reserva anulada correctamente.");
 		} catch (NullPointerException e) {
@@ -260,13 +253,13 @@ public class Vista implements IVista {
 				throw new NullPointerException("El profesor introducido no existe.");
 			} else {
 				List<Reserva> listaReservas = controlador.getReservasProfesor(profesorBuscar);
-				
-				if(listaReservas.size() == 0) {
+
+				if (listaReservas.size() == 0) {
 					System.out.println("No hay reservas.");
 				} else {
 					Iterator<Reserva> iterador = listaReservas.iterator();
-					
-					while(iterador.hasNext()) {
+
+					while (iterador.hasNext()) {
 						System.out.println(iterador.next().toString());
 					}
 				}
@@ -279,37 +272,10 @@ public class Vista implements IVista {
 
 	}
 
-	/*public void listarReservaPermanencia() {
-		try {
-
-			Consola.mostrarCabecera("Listado de reservas existentes por permanencia: ");
-			Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
-
-			List<Reserva> listaReservas = controlador.getReservasPermanencia(permanencia);
-			
-			if(listaReservas.size() == 0) {
-				System.out.println("No hay reservas.");
-			} else {
-				
-				Iterator<Reserva> iterador = listaReservas.iterator();
-				
-				while(iterador.hasNext()){
-					System.out.println(iterador.next().toString());
-				}
-			}
-		} catch (NullPointerException e) {
-			System.out.println(e.getMessage());
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-
-	}*/
-
 	public void consultarDisponibilidad() {
 		try {
 
-			//Permanencia permanencia = new Permanencia(Consola.leerDia(), Consola.leerTramo());
-			Aula aula = Consola.leerAulaFicticia();
+			Permanencia permanencia = Consola.leerPermanencia();
 			Aula aulaBuscar = controlador.buscarAula(Consola.leerAula());
 			if (aulaBuscar == null) {
 				System.out.println("El aula introducida no existe.");
@@ -326,7 +292,6 @@ public class Vista implements IVista {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 }

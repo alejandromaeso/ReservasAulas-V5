@@ -21,10 +21,10 @@ public class Modelo implements IModelo {
 	private IAulas aulas;
 	private IReservas reservas;
 	
-	public Modelo() {
-		profesores = new Profesores();
-		aulas = new Aulas();
-		reservas = new Reservas();
+	public Modelo(IFuenteDatos fuenteDatos) {
+		profesores = fuenteDatos.crearProfesores();
+		aulas = fuenteDatos.crearAulas();
+		reservas = fuenteDatos.crearReservas();
 	}
 
 	@Override

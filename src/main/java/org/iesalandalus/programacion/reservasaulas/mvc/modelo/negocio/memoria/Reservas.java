@@ -102,9 +102,7 @@ public class Reservas implements IReservas {
 			throw new NullPointerException("ERROR: La reserva no puede ser nula");
 		}
 		boolean mesSiguienteOPosterior = false;
-		Month mes = reserva.getPermanencia().getDia().getMonth();
-		Month mesActual = LocalDate.now().getMonth();
-		if (mes.getValue() > mesActual.getValue()) {
+		if (reserva.getPermanencia().getDia().compareTo(LocalDate.now().plusMonths(1).withDayOfMonth(1)) != -1) {
 			mesSiguienteOPosterior = true;
 		}
 		return mesSiguienteOPosterior;

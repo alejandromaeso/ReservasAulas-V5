@@ -58,7 +58,7 @@ public enum Opcion {
 		}
 	},
 	
-	INSERTAR_RESERVA("Inserta reserva") {
+	INSERTAR_RESERVA("Insertar reserva") {
 		public void ejecutar() throws OperationNotSupportedException {
 			vista.realizarReserva();
 		}
@@ -85,12 +85,6 @@ public enum Opcion {
 			vista.listarReservaProfesor();
 		}
 	},
-/*	LISTAR_RESERVAS_PERMANENCIA("Listar reservas permanencia") {
-		public void ejecutar() {
-			vista.listarReservaPermanencia();
-		}
-	},*/
-
 	CONSULTAR_DISPONIBILIDAD("Consultar disponibilidad") {
 		public void ejecutar() {
 			vista.consultarDisponibilidad();
