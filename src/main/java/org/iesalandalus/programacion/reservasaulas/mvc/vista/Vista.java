@@ -1,6 +1,5 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.vista;
 
-import java.time.DateTimeException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -14,9 +13,9 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
 public class Vista implements IVista {
 
-	private static final String ERROR = "aa";
+	/*private static final String ERROR = "aa";
 	private static final String NOMBRE_VALIDO = "Alex";
-	private static final String CORREO_VALIDO = "ponmeun8@gmail.com";
+	private static final String CORREO_VALIDO = "ponmeun8@gmail.com";*/
 	private IControlador controlador;
 
 	public Vista() {
