@@ -1,9 +1,15 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Profesor implements Comparable<Profesor> {
+public class Profesor implements Comparable<Profesor>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6402178995738751035L;
+	
 	private final String ER_TELEFONO = "^(6|9){1}(1|2|3|4|5|6|7|8|9|0){8}$";
 	private final String ER_CORREO = "^.{1,}@.{1,}\\.[0-9a-zA-Z]{1,}$";
 

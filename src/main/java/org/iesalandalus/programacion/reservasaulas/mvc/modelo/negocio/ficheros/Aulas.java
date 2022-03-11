@@ -1,8 +1,15 @@
-package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
+package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-
 
 import javax.naming.OperationNotSupportedException;
 import java.util.Iterator;
@@ -13,6 +20,7 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IAulas;
 
 public class Aulas implements IAulas {
 
+	private static final String NOMBRE_FICHERO_AULAS = "datos/aulas.txt";
 	private List<Aula> coleccionAulas;
 
 	public Aulas() {
@@ -23,17 +31,64 @@ public class Aulas implements IAulas {
 	public Aulas(IAulas aulas) {
 		setAulas(aulas);
 	}
-	
+
 	@Override
 	public void comenzar() {
-		// TODO Auto-generated method stub
-		
+		leer();
+	}
+
+	private void leer() {
+		File fichero = new File(NOMBRE_FICHERO_AULAS);
+
+		try {
+			ObjectInputStream objetoLectura = new ObjectInputStream(new FileInputStream(fichero));
+			Aula aula = null;
+			do {
+				aula = (Aula) objetoLectura.readObject();
+				insertar(aula);
+			} while (aula != null);
+			
+			objetoLectura.close();
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("ERROR: No se pudo encontrar la clase a leer.");
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se encuentra el fichero de lectura.");
+		} catch (EOFException e) {
+			System.out.println("El fichero se ha leído correctamente.");
+		} catch (IOException e) {
+			System.out.println("ERROR: Ha ocurrido un error inesperado en la E/S.");
+		} catch (OperationNotSupportedException e) {
+			System.out.println("ERROR: Operación no soportada.");
+		}
+
 	}
 
 	@Override
 	public void terminar() {
-		// TODO Auto-generated method stub
-		
+		escribir();
+	}
+
+	private void escribir() {
+		File fichero = new File(NOMBRE_FICHERO_AULAS);
+
+		try {
+			ObjectOutputStream objetoEscritura = new ObjectOutputStream(new FileOutputStream(fichero));
+
+			for (Aula aula : coleccionAulas) {
+				objetoEscritura.writeObject(aula);
+
+			}
+			
+			objetoEscritura.close();
+
+			System.out.println("Fichero escrito correctamente.");
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se ha encontrado el fichero.");
+		} catch (IOException e) {
+			System.out.println("ERROR: Ha ocurrido un error inesperado en la E/S.");
+		}
+
 	}
 
 	private void setAulas(IAulas aulas) {
@@ -79,7 +134,7 @@ public class Aulas implements IAulas {
 		}
 
 	}
-	
+
 	@Override
 	public Aula buscar(Aula buscarAula) {
 		if (buscarAula == null) {
@@ -121,9 +176,4 @@ public class Aulas implements IAulas {
 
 		return representacion;
 	}
-
-	
 }
-	 
-
-

@@ -24,6 +24,20 @@ public class Modelo implements IModelo {
 		aulas = fuenteDatos.crearAulas();
 		reservas = fuenteDatos.crearReservas();
 	}
+	
+	@Override
+	public void comenzar() {
+		aulas.comenzar();
+		profesores.comenzar();
+		reservas.comenzar();
+	}
+
+	@Override
+	public void terminar() {
+		aulas.terminar();
+		profesores.terminar();
+		reservas.terminar();
+	}
 
 	@Override
 	public List<Aula> getAulas() {

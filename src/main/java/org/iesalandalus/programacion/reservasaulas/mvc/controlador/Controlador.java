@@ -18,6 +18,14 @@ public class Controlador implements IControlador {
 
 	public Controlador(IModelo modelo, IVista vista) {
 
+		if(modelo == null) {
+			throw new NullPointerException("ERROR: El modelo no puede ser nulo.");
+		}
+		
+		if(vista == null) {
+			throw new NullPointerException("ERROR: La vista no puede ser nula.");
+		}
+		
 		this.modelo = modelo;
 		this.vista = vista;
 		this.vista.setControlador(this);
@@ -26,6 +34,7 @@ public class Controlador implements IControlador {
 	@Override
 	public void comenzar() throws OperationNotSupportedException {
 		
+		modelo.comenzar();
 		vista.comenzar();
 
 	}
@@ -33,6 +42,8 @@ public class Controlador implements IControlador {
 	@Override
 	public void terminar() {
 
+		modelo.terminar();
+		System.out.println("Ejecución del programa terminada.");
 	}
 
 	@Override

@@ -1,9 +1,15 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Reserva implements Comparable<Reserva> {
+public class Reserva implements Comparable<Reserva>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8190187186806831322L;
+	
 	private Profesor profesor;
 	private Aula aula;
 	private Permanencia permanencia;

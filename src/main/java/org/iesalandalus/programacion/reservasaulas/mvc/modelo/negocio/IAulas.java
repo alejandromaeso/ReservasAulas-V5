@@ -7,6 +7,10 @@ import javax.naming.OperationNotSupportedException;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 
 public interface IAulas {
+	
+	public void comenzar();
+	
+	public void terminar();
 
 	public List<Aula> getAulas();
 	

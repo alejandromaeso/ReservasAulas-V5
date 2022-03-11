@@ -15,7 +15,7 @@ public class MainApp {
 
 	public static void main(String[] args) throws OperationNotSupportedException {
 		
-		IFuenteDatos factoria = FactoriaFuenteDatos.MEMORIA.crear();
+		IFuenteDatos factoria = FactoriaFuenteDatos.FICHEROS.crear();
 		
 		IModelo modelo = new Modelo(factoria);
 		IVista vista = new Vista();

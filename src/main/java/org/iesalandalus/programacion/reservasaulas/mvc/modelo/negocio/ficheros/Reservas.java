@@ -1,5 +1,13 @@
-package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
+package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros;
 
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
@@ -19,6 +27,7 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IReservas;
 
 public class Reservas implements IReservas {
 
+	private static final String NOMBRE_FICHERO_RESERVAS = "datos/reservas.txt";
 	private static final float MAX_PUNTOS_PROFESOR_MES = 200;
 	private List<Reserva> coleccionReservas;
 
@@ -29,17 +38,62 @@ public class Reservas implements IReservas {
 	public Reservas(IReservas reservas) {
 		setReservas(reservas);
 	}
-	
+
 	@Override
 	public void comenzar() {
-		// TODO Auto-generated method stub
-		
+		leer();
+	}
+
+	private void leer() {
+		File fichero = new File(NOMBRE_FICHERO_RESERVAS);
+
+		try {
+			ObjectInputStream objetoLectura = new ObjectInputStream(new FileInputStream(fichero));
+			Reserva reserva = null;
+			do {
+				reserva = (Reserva) objetoLectura.readObject();
+				insertar(reserva);
+			} while (reserva != null);
+			
+			objetoLectura.close();
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("ERROR: No se pudo encontrar la clase a leer.");
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se encuentra el fichero de lectura.");
+		} catch (EOFException e) {
+			System.out.println("El fichero se ha leído correctamente.");
+		} catch (IOException e) {
+			System.out.println("ERROR: Ha ocurrido un error inesperado en la E/S.");
+		} catch (OperationNotSupportedException e) {
+			System.out.println("ERROR: Operación no soportada.");
+		}
 	}
 
 	@Override
 	public void terminar() {
-		// TODO Auto-generated method stub
-		
+		escribir();
+	}
+
+	private void escribir() {
+		File fichero = new File(NOMBRE_FICHERO_RESERVAS);
+
+		try {
+			ObjectOutputStream objetoEscritura = new ObjectOutputStream(new FileOutputStream(fichero));
+
+			for (Reserva reserva : coleccionReservas) {
+				objetoEscritura.writeObject(reserva);
+
+			}
+			
+			objetoEscritura.close();
+
+			System.out.println("Fichero escrito correctamente.");
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se ha encontrado el fichero.");
+		} catch (IOException e) {
+			System.out.println("ERROR: Ha ocurrido un error inesperado en la E/S.");
+		}
 	}
 
 	private void setReservas(IReservas reservas) {

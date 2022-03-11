@@ -1,16 +1,27 @@
-package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria;
+package org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros;
 
 import java.util.List;
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 
 import javax.naming.OperationNotSupportedException;
+
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
 
 public class Profesores implements IProfesores {
-
+	
+	private static final String NOMBRE_FICHERO_PROFESORES = "datos/profesores.txt";
 	private List<Profesor> coleccionProfesores;
 
 	public Profesores() {
@@ -26,14 +37,61 @@ public class Profesores implements IProfesores {
 	
 	@Override
 	public void comenzar() {
-		// TODO Auto-generated method stub
-		
+
+		leer();
+	}
+
+	private void leer() {
+		File fichero = new File(NOMBRE_FICHERO_PROFESORES);
+
+		try {
+			ObjectInputStream objetoLectura = new ObjectInputStream(new FileInputStream(fichero));
+			Profesor profesor = null;
+			do {
+				profesor = (Profesor) objetoLectura.readObject();
+				insertar(profesor);
+			} while (profesor != null);
+			
+			objetoLectura.close();
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("ERROR: No se pudo encontrar la clase a leer.");
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se encuentra el fichero de lectura.");
+		} catch (EOFException e) {
+			System.out.println("El fichero se ha leído correctamente.");
+		} catch (IOException e) {
+			System.out.println("ERROR: Ha ocurrido un error inesperado en la E/S.");
+		} catch (OperationNotSupportedException e) {
+			System.out.println("ERROR: Operación no soportada.");
+		}
 	}
 
 	@Override
 	public void terminar() {
-		// TODO Auto-generated method stub
-		
+
+		escribir();
+	}
+
+	private void escribir() {
+		File fichero = new File(NOMBRE_FICHERO_PROFESORES);
+
+		try {
+			ObjectOutputStream objetoEscritura = new ObjectOutputStream(new FileOutputStream(fichero));
+
+			for (Profesor profesor : coleccionProfesores) {
+				objetoEscritura.writeObject(profesor);
+
+			}
+			
+			objetoEscritura.close();
+
+			System.out.println("Fichero escrito correctamente.");
+		} catch (FileNotFoundException e) {
+			System.out.println("ERROR: No se ha encontrado el fichero.");
+		} catch (IOException e) {
+			System.out.println("ERROR: Ha ocurrido un error inesperado en la E/S.");
+		}
 	}
 
 	private void setProfesores(IProfesores profesores) {
@@ -49,7 +107,7 @@ public class Profesores implements IProfesores {
 	public List<Profesor> getProfesores() {
 		return copiaProfundaProfesores(coleccionProfesores);
 	}
-	
+
 	@Override
 	public int getNumProfesores() {
 

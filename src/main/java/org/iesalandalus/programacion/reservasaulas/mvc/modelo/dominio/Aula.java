@@ -1,10 +1,16 @@
 package org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio;
 
+import java.io.Serializable;
 import java.util.Objects;
 import java.util.Random;
 
-public class Aula implements Comparable<Aula> {
+public class Aula implements Comparable<Aula>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5141967645022760689L;
+	
 	private final static float PUNTOS_POR_PUESTO = (float) 0.5;
 	private final static int MIN_PUESTOS = 10;
 	private final static int MAX_PUESTOS = 50;
