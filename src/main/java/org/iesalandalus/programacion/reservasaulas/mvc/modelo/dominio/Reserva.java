@@ -5,9 +5,6 @@ import java.util.Objects;
 
 public class Reserva implements Comparable<Reserva>, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 8190187186806831322L;
 	
 	private Profesor profesor;
@@ -132,5 +129,4 @@ public class Reserva implements Comparable<Reserva>, Serializable {
 		}
 		return comparadorAula;
 	}
-
 }

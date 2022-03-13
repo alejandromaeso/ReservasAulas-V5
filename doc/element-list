@@ -1,0 +1,9 @@
+org.iesalandalus.programacion.reservasaulas
+org.iesalandalus.programacion.reservasaulas.mvc.controlador
+org.iesalandalus.programacion.reservasaulas.mvc.modelo
+org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio
+org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio
+org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.ficheros
+org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.memoria
+org.iesalandalus.programacion.reservasaulas.mvc.vista
+org.iesalandalus.programacion.utilidades

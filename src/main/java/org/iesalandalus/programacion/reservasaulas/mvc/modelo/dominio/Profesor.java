@@ -5,9 +5,6 @@ import java.util.Objects;
 
 public class Profesor implements Comparable<Profesor>, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6402178995738751035L;
 	
 	private final String ER_TELEFONO = "^(6|9){1}(1|2|3|4|5|6|7|8|9|0){8}$";
@@ -82,7 +79,6 @@ public class Profesor implements Comparable<Profesor>, Serializable {
 
 			this.telefono = telefono;
 		}
-		
 	}
 	
 	public String getNombre() {
@@ -124,7 +120,6 @@ public class Profesor implements Comparable<Profesor>, Serializable {
 		if (telefono == null) {
 			return "nombre=" + formateaNombre(nombre) + ", correo=" + correo;
 		}
-
 		return "nombre=" + formateaNombre(nombre) + ", correo=" + correo + ", teléfono=" + telefono;
 	}
 

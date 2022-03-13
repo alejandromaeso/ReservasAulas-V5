@@ -32,13 +32,11 @@ public class Reservas implements IReservas {
 	
 	@Override
 	public void comenzar() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void terminar() {
-		// TODO Auto-generated method stub
 		
 	}
 

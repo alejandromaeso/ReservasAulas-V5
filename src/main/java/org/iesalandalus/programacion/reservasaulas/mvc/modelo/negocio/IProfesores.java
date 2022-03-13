@@ -23,5 +23,4 @@ public interface IProfesores {
 	public void borrar(Profesor profesor) throws OperationNotSupportedException;
 
 	public List<String> representar();
-
 }

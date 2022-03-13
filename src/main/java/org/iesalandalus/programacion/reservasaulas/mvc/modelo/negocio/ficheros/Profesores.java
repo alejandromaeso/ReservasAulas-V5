@@ -15,7 +15,6 @@ import java.util.Iterator;
 
 import javax.naming.OperationNotSupportedException;
 
-import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.negocio.IProfesores;
 
@@ -37,7 +36,6 @@ public class Profesores implements IProfesores {
 	
 	@Override
 	public void comenzar() {
-
 		leer();
 	}
 

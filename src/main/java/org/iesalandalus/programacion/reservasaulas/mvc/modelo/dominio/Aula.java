@@ -6,15 +6,16 @@ import java.util.Random;
 
 public class Aula implements Comparable<Aula>, Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -5141967645022760689L;
 	
 	private final static float PUNTOS_POR_PUESTO = (float) 0.5;
+
 	private final static int MIN_PUESTOS = 10;
+
 	private final static int MAX_PUESTOS = 50;
+
 	private String nombre;
+
 	private int puestos;
 
 	public Aula(String nombre, int puestos) {
@@ -96,7 +97,6 @@ public class Aula implements Comparable<Aula>, Serializable {
 	public int compareTo(Aula o) {
 
 		return getNombre().compareTo(o.getNombre());
-
 	}
 
 }

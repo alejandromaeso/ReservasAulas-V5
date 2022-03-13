@@ -24,7 +24,6 @@ public class Aulas implements IAulas {
 	private List<Aula> coleccionAulas;
 
 	public Aulas() {
-
 		coleccionAulas = new ArrayList<Aula>();
 	}
 
@@ -61,7 +60,6 @@ public class Aulas implements IAulas {
 		} catch (OperationNotSupportedException e) {
 			System.out.println("ERROR: Operación no soportada.");
 		}
-
 	}
 
 	@Override
@@ -88,7 +86,6 @@ public class Aulas implements IAulas {
 		} catch (IOException e) {
 			System.out.println("ERROR: Ha ocurrido un error inesperado en la E/S.");
 		}
-
 	}
 
 	private void setAulas(IAulas aulas) {
@@ -118,7 +115,6 @@ public class Aulas implements IAulas {
 	@Override
 	public int getNumAulas() {
 		return coleccionAulas.size();
-
 	}
 
 	@Override
@@ -132,7 +128,6 @@ public class Aulas implements IAulas {
 		} else {
 			throw new OperationNotSupportedException("ERROR: Ya existe un aula con ese nombre.");
 		}
-
 	}
 
 	@Override
@@ -162,7 +157,6 @@ public class Aulas implements IAulas {
 		} else {
 			throw new OperationNotSupportedException("ERROR: No existe ningún aula con ese nombre.");
 		}
-
 	}
 
 	@Override
@@ -173,7 +167,6 @@ public class Aulas implements IAulas {
 			Aula aulaRepresentada = iterador.next();
 			representacion.add(aulaRepresentada.toString());
 		}
-
 		return representacion;
 	}
 }

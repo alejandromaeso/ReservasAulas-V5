@@ -36,7 +36,6 @@ public class Controlador implements IControlador {
 		
 		modelo.comenzar();
 		vista.comenzar();
-
 	}
 
 	@Override
@@ -50,84 +49,72 @@ public class Controlador implements IControlador {
 	public void insertarAula(Aula aula) throws OperationNotSupportedException {
 		
 		modelo.insertarAula(aula);
-
 	}
 
 	@Override
 	public void insertarProfesor(Profesor profesor) throws OperationNotSupportedException {
 		
 		modelo.insertarProfesor(profesor);
-
 	}
 	
 	@Override
 	public void borrarAula(Aula aula) throws OperationNotSupportedException {
 		
 		modelo.borrarAula(aula);
-
 	}
 
 	@Override
 	public void borrarProfesor(Profesor profesor) throws OperationNotSupportedException {
 		
 		modelo.borrarProfesor(profesor);
-
 	}
 
 	@Override
 	public Aula buscarAula(Aula aula) {
 		
 		return modelo.buscarAula(aula);
-
 	}
 
 	@Override
 	public Profesor buscarProfesor(Profesor profesor) {
 		
 		return modelo.buscarProfesor(profesor);
-
 	}
 
 	@Override
 	public List<String> representarAulas() {
 		
 		return modelo.representarAulas();
-
 	}
 	
 	@Override
 	public List<String> representarProfesores() {
 		
-		return modelo.representarProfesores();
-		
+		return modelo.representarProfesores();	
 	}
 	
 	@Override
 	public List<String> representarReservas() {
 		
 		return modelo.representarReservas();
-		
 	}
 	
 	@Override
 	public void realizarReserva(Reserva reserva) throws OperationNotSupportedException {
 		
-		modelo.realizarReserva(reserva);
-		
+		modelo.realizarReserva(reserva);	
 	}
 	
 	@Override
 	public void anularReserva(Reserva reserva) throws OperationNotSupportedException {
 		
 		modelo.anularReserva(reserva);
-		
 	}
 	
 	@Override
 	public List<Reserva> getReservasAula(Aula aula) {
 		
-		return modelo.getReservasAula(aula);
-		
+		return modelo.getReservasAula(aula);	
 	}
 	
 	@Override
@@ -146,6 +133,5 @@ public class Controlador implements IControlador {
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia) {
 		
 		return modelo.consultarDisponibilidad(aula, permanencia);
-		
 	}
 }

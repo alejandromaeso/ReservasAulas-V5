@@ -26,13 +26,11 @@ public class Aulas implements IAulas {
 	
 	@Override
 	public void comenzar() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void terminar() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -40,7 +38,6 @@ public class Aulas implements IAulas {
 		if (aulas == null) {
 			throw new NullPointerException("ERROR: No se pueden copiar aulas nulas.");
 		}
-
 		coleccionAulas = aulas.getAulas();
 	}
 
@@ -63,7 +60,6 @@ public class Aulas implements IAulas {
 	@Override
 	public int getNumAulas() {
 		return coleccionAulas.size();
-
 	}
 
 	@Override
@@ -77,7 +73,6 @@ public class Aulas implements IAulas {
 		} else {
 			throw new OperationNotSupportedException("ERROR: Ya existe un aula con ese nombre.");
 		}
-
 	}
 	
 	@Override
@@ -118,11 +113,8 @@ public class Aulas implements IAulas {
 			Aula aulaRepresentada = iterador.next();
 			representacion.add(aulaRepresentada.toString());
 		}
-
 		return representacion;
 	}
-
-	
 }
 	 
 

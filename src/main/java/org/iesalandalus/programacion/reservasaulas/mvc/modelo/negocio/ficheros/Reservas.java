@@ -160,7 +160,6 @@ public class Reservas implements IReservas {
 		} else {
 			coleccionReservas.add(new Reserva(reserva));
 		}
-
 	}
 
 	private boolean esMesSiguienteOPosterior(Reserva reserva) {
@@ -172,7 +171,6 @@ public class Reservas implements IReservas {
 			mesSiguienteOPosterior = true;
 		}
 		return mesSiguienteOPosterior;
-
 	}
 
 	private float getPuntosGastadosReserva(Reserva reserva) {
@@ -187,7 +185,6 @@ public class Reservas implements IReservas {
 		while (iterador.hasNext()) {
 			sumaPuntosTotales = sumaPuntosTotales + iterador.next().getPuntos();
 		}
-
 		return sumaPuntosTotales;
 	}
 
@@ -242,7 +239,6 @@ public class Reservas implements IReservas {
 			}
 		}
 		return null;
-
 	}
 
 	@Override
@@ -250,20 +246,17 @@ public class Reservas implements IReservas {
 		if (borrarReserva == null) {
 			throw new NullPointerException("ERROR: No se puede borrar una reserva nula.");
 		}
-
+		
 		if (esMesSiguienteOPosterior(borrarReserva)) {
 			if (coleccionReservas.contains(borrarReserva)) {
 				coleccionReservas.remove(borrarReserva);
 			} else {
 				throw new OperationNotSupportedException("ERROR: No existe ninguna reserva igual.");
-
 			}
-
 		} else {
 			throw new OperationNotSupportedException(
 					"ERROR: Sólo se pueden anular reservas para el mes que viene o posteriores.");
 		}
-
 	}
 
 	@Override
@@ -347,7 +340,6 @@ public class Reservas implements IReservas {
 				consulta = false;
 			}
 		}
-
 		return consulta;
 	}
 }

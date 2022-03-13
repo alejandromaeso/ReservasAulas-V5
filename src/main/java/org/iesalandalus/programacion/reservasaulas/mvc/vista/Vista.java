@@ -13,9 +13,6 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 
 public class Vista implements IVista {
 
-	/*private static final String ERROR = "aa";
-	private static final String NOMBRE_VALIDO = "Alex";
-	private static final String CORREO_VALIDO = "ponmeun8@gmail.com";*/
 	private IControlador controlador;
 
 	public Vista() {
@@ -89,7 +86,6 @@ public class Vista implements IVista {
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
 		}
-
 	}
 
 	public void listarAulas() {
@@ -284,7 +280,6 @@ public class Vista implements IVista {
 				} else {
 					System.out.println("El aula ya está reservada.");
 				}
-
 			}
 		} catch (NullPointerException e) {
 			System.out.println(e.getMessage());
@@ -292,5 +287,4 @@ public class Vista implements IVista {
 			System.out.println(e.getMessage());
 		}
 	}
-
 }

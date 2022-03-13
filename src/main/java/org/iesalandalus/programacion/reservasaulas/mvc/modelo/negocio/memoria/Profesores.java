@@ -21,18 +21,15 @@ public class Profesores implements IProfesores {
 	public Profesores(IProfesores profesores) {
 
 		setProfesores(profesores);
-
 	}
 	
 	@Override
 	public void comenzar() {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void terminar() {
-		// TODO Auto-generated method stub
 		
 	}
 
@@ -79,7 +76,6 @@ public class Profesores implements IProfesores {
 		} else {
 			throw new OperationNotSupportedException("ERROR: Ya existe un profesor con ese correo.");
 		}
-
 	}
 
 	@Override
@@ -97,7 +93,6 @@ public class Profesores implements IProfesores {
 			}
 		}
 		return null;
-
 	}
 
 	@Override
@@ -111,7 +106,6 @@ public class Profesores implements IProfesores {
 		} else {
 			throw new OperationNotSupportedException("ERROR: No existe ningún profesor con ese correo.");
 		}
-
 	}
 
 	@Override
@@ -124,5 +118,4 @@ public class Profesores implements IProfesores {
 		}
 		return representacion;
 	}
-
 }
