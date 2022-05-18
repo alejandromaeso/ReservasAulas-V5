@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="paneAcercaDe" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="460.0" stylesheets="org/iesalandalus/programacion/reservasaulas/mvc/vista/grafica/recursos/estilo/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.controladores.ControladorAcercaDe">
+   <children>
+      <Label fx:id="lbAcercaDe" layoutX="21.0" layoutY="7.0" prefHeight="45.0" prefWidth="130.0" text="Acerca de" textAlignment="JUSTIFY">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfHechaPor" alignment="CENTER" editable="false" layoutX="93.0" layoutY="59.0" prefHeight="23.0" prefWidth="230.0" text="Aplicacion hecha por:" />
+      <Label fx:id="lbAlejandro" layoutX="132.0" layoutY="97.0" text="Alejandro Maeso">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Button fx:id="btOk" layoutX="21.0" layoutY="132.0" mnemonicParsing="false" onAction="#btClick" prefHeight="65.0" prefWidth="421.0" text="OK" />
+      <ImageView fx:id="imgagenAcercaDe" fitHeight="267.0" fitWidth="349.0" layoutX="56.0" layoutY="226.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../imagenes/adios.jpg" />
+         </image></ImageView>
+   </children>
+</Pane>

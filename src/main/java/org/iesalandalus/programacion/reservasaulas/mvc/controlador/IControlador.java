@@ -32,11 +32,17 @@ public interface IControlador {
 	List<String> representarProfesores();
 
 	List<String> representarReservas();
+	
+	List<Aula> listarAulas();
+
+	List<Profesor> listarProfesores();
+	
+	List<Reserva> listarReservas();
 
 	void realizarReserva(Reserva reserva) throws OperationNotSupportedException;
 
 	void anularReserva(Reserva reserva) throws OperationNotSupportedException;
-
+	
 	List<Reserva> getReservasAula(Aula aula);
 
 	List<Reserva> getReservasProfesor(Profesor profesor);

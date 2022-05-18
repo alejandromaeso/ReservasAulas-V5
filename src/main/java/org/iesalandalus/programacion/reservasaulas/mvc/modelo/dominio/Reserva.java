@@ -95,10 +95,16 @@ public class Reserva implements Comparable<Reserva>, Serializable {
 		return Objects.equals(aula, other.aula) && Objects.equals(permanencia, other.permanencia);
 	}
 
-	@Override
+	/*@Override
 	public String toString() {
 		return String.format("%s, %s, %s, puntos=%.1f", profesor, aula, permanencia, getPuntos());
+	}*/
+	
+	@Override
+	public String toString() {
+		return profesor +", "+ aula +", "+ permanencia +", ";
 	}
+
 
 	@Override
 	public int compareTo(Reserva o) {

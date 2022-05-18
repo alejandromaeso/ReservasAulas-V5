@@ -98,5 +98,5 @@ public class Aula implements Comparable<Aula>, Serializable {
 
 		return getNombre().compareTo(o.getNombre());
 	}
-
 }
+

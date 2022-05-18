@@ -8,19 +8,29 @@ import org.iesalandalus.programacion.reservasaulas.mvc.modelo.FactoriaFuenteDato
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.IFuenteDatos;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.IModelo;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.Modelo;
+import org.iesalandalus.programacion.reservasaulas.mvc.vista.FactoriaVista;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.IVista;
-import org.iesalandalus.programacion.reservasaulas.mvc.vista.Vista;
+import org.iesalandalus.programacion.reservasaulas.mvc.vista.texto.VistaTexto;
 
 public class MainApp {
 
 	public static void main(String[] args) throws OperationNotSupportedException {
-		
-		IFuenteDatos factoria = FactoriaFuenteDatos.FICHEROS.crear();
-		
-		IModelo modelo = new Modelo(factoria);
-		IVista vista = new Vista();
+		IModelo modelo = new Modelo(FactoriaFuenteDatos.FICHEROS.crear());
+		IVista vista = procesarArgumentosVista(args);
 		IControlador controlador = new Controlador(modelo, vista);
-		
 		controlador.comenzar();
+	}
+
+	private static IVista procesarArgumentosVista(String[] args) {
+		IVista vista = FactoriaVista.GRAFICA.crear();
+		vista = FactoriaVista.GRAFICA.crear();
+		/*for (String argumento : args) {
+			if (argumento.equalsIgnoreCase("-vpestanas")) {
+				vista = FactoriaVista.GRAFICA.crear();
+			} else if (argumento.equalsIgnoreCase("-vtexto")) {
+				vista = FactoriaVista.TEXTO.crear();
+			}
+		}*/
+		return vista;
 	}
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="fxReservas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="930.0" stylesheets="org/iesalandalus/programacion/reservasaulas/mvc/vista/grafica/recursos/estilo/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.controladores.ControladorListarReservas">
+   <children>
+      <Label fx:id="lbProfesores" layoutX="14.0" layoutY="10.0" prefHeight="81.0" prefWidth="164.0" text="Reservas">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tbReservas" layoutX="8.0" layoutY="81.0" prefHeight="436.0" prefWidth="914.0">
+        <columns>
+          <TableColumn fx:id="tbNombreReserva" prefWidth="250.0" text="Nombre" />
+          <TableColumn fx:id="tbCorreoReserva" minWidth="0.0" prefWidth="198.0" text="Correo" />
+            <TableColumn fx:id="tbNombreAulaReserva" prefWidth="144.0" text="Nombre del Aula" />
+            <TableColumn fx:id="tbPermanencia" prefWidth="242.0" text="Permanencia" />
+            <TableColumn fx:id="tbPuntosReserva" prefWidth="78.0" text="Puntos" />
+        </columns>
+      </TableView>
+      <Button fx:id="btInsertarReserva" layoutX="615.0" layoutY="30.0" mnemonicParsing="false" onAction="#btInsertarReserva" prefHeight="40.0" prefWidth="150.0" text="Insertar Reserva">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+      <Button fx:id="btBorrarReserva" layoutX="772.0" layoutY="30.0" mnemonicParsing="false" onAction="#btBorrarReserva" prefHeight="40.0" prefWidth="150.0" text="Borrar Reserva">
+         <font>
+            <Font size="18.0" />
+         </font></Button>
+   </children>
+</Pane>

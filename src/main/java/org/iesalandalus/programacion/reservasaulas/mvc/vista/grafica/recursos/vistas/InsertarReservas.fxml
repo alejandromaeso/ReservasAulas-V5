@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pnInsertarReservas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="523.0" prefWidth="280.0" stylesheets="org/iesalandalus/programacion/reservasaulas/mvc/vista/grafica/recursos/estilo/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.controladores.ControladorAnadirReservas">
+   <children>
+      <Label fx:id="lbNombreProf" layoutX="14.0" layoutY="69.0" prefHeight="34.0" prefWidth="219.0" text="Nombre del Profesor:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfNombreProf" layoutX="12.0" layoutY="103.0" prefHeight="25.0" prefWidth="252.0" />
+      <Label fx:id="tituloInsertarReservas" layoutX="48.0" layoutY="14.0" prefHeight="55.0" prefWidth="192.0" text="INSERTAR RESERVAS" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfCorreoProf" layoutX="14.0" layoutY="171.0" prefHeight="25.0" prefWidth="252.0" />
+      <Label fx:id="lbCorreoProf" layoutX="14.0" layoutY="137.0" prefHeight="34.0" prefWidth="219.0" text="Correo del Profesor:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbAulaAReservas" layoutX="14.0" layoutY="206.0" prefHeight="34.0" prefWidth="219.0" text="Aula a Reservar:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="btInsertarReserva" layoutX="18.0" layoutY="460.0" mnemonicParsing="false" onAction="#insertarReserva" prefHeight="55.0" prefWidth="115.0" text="Insertar" />
+      <Button fx:id="btCancelarReserva" layoutX="144.0" layoutY="460.0" mnemonicParsing="false" onAction="#cancelarReserva" prefHeight="55.0" prefWidth="115.0" text="Cancelar" />
+      <Label fx:id="lbPermanencia" layoutX="14.0" layoutY="279.0" prefHeight="34.0" prefWidth="219.0" text="Fecha:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dpDia" layoutX="14.0" layoutY="313.0" onAction="#seleccionDia" prefHeight="25.0" prefWidth="252.0" />
+      <ComboBox fx:id="cbTramo" layoutX="20.0" layoutY="392.0" prefHeight="25.0" prefWidth="227.0" promptText="Seleccione el Tramo" visibleRowCount="2" />
+      <Slider fx:id="slHora" blockIncrement="1.0" layoutX="24.0" layoutY="398.0" majorTickUnit="1.0" max="22.0" min="8.0" minorTickCount="0" opacity="0.0" prefHeight="14.0" prefWidth="252.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" value="8.0" />
+      <RadioButton fx:id="rdTramo" layoutX="41.0" layoutY="358.0" mnemonicParsing="false" onAction="#tramoSeleccionado" selected="true" text="Tramo">
+         <toggleGroup>
+            <ToggleGroup fx:id="permanencia" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="rdHora" layoutX="160.0" layoutY="358.0" mnemonicParsing="false" onAction="#horaSeleccionada" prefHeight="17.0" prefWidth="99.0" text="Hora" toggleGroup="$permanencia" />
+      <ComboBox fx:id="cbAulas" layoutX="14.0" layoutY="240.0" prefHeight="25.0" prefWidth="252.0" promptText="Selecciona un Aula" />
+      <Button fx:id="btCargarAulas" layoutX="150.0" layoutY="211.0" mnemonicParsing="false" onAction="#loadAulas" prefHeight="25.0" prefWidth="115.0" text="Cargar" />
+   </children>
+</Pane>

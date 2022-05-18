@@ -134,4 +134,20 @@ public class Controlador implements IControlador {
 		
 		return modelo.consultarDisponibilidad(aula, permanencia);
 	}
+
+	@Override
+	public List<Aula> listarAulas() {
+		return modelo.getAulas();
+	}
+
+	@Override
+	public List<Profesor> listarProfesores() {
+		return modelo.getProfesores();
+	}
+	
+	@Override
+	public List<Reserva> listarReservas() {
+		return modelo.getReservas();
+	}
+
 }

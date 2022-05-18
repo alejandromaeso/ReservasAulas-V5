@@ -51,7 +51,7 @@ public class PermanenciaPorHora extends Permanencia {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(hora);
+		return Objects.hash(super.getDia(),hora);
 	}
 
 	@Override
@@ -70,5 +70,5 @@ public class PermanenciaPorHora extends Permanencia {
 	public String toString() {
 		return super.toString()+ ", hora=" + hora.format(FORMATO_HORA);
 	}
-	
-}
+}	
+

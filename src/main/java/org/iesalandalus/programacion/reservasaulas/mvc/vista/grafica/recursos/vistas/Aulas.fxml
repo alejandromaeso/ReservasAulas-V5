@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="fxAulas" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="930.0" stylesheets="org/iesalandalus/programacion/reservasaulas/mvc/vista/grafica/recursos/estilo/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.controladores.ControladorListarAulas">
+   <children>
+      <TableView fx:id="tblAulas" layoutX="13.0" layoutY="81.0" prefHeight="540.0" prefWidth="907.0">
+        <columns>
+          <TableColumn fx:id="colNombreAula" prefWidth="525.0" text="Nombre del Aula" />
+          <TableColumn fx:id="colPuestosAula" minWidth="0.0" prefWidth="380.0" text="Puestos " />
+        </columns>
+      </TableView>
+      <Label fx:id="lbAulas" layoutX="14.0" layoutY="23.0" prefHeight="39.0" prefWidth="129.0" text="Aulas">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="btInsertarAula" layoutX="613.0" layoutY="33.0" mnemonicParsing="false" onAction="#btInsertarAula" prefHeight="40.0" prefWidth="150.0" text="Insertar Aula">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btBorrarAula" layoutX="770.0" layoutY="33.0" mnemonicParsing="false" onAction="#btBorrarAula" prefHeight="40.0" prefWidth="150.0" text="Borrar Aula">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

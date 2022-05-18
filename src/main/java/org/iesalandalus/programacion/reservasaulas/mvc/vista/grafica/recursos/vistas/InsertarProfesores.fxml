@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane fx:id="paneInsertarProf" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="386.0" prefWidth="287.0" stylesheets="org/iesalandalus/programacion/reservasaulas/mvc/vista/grafica/recursos/estilo/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.controladores.ControladorAnadirProfesores">
+   <children>
+      <Label fx:id="lbInsertarNombreProf" layoutX="14.0" layoutY="69.0" prefHeight="34.0" prefWidth="76.0" text="Nombre:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfInsertarNombreProf" layoutX="12.0" layoutY="103.0" prefHeight="25.0" prefWidth="252.0" />
+      <Label fx:id="lbTituloInsertarProf" layoutX="48.0" layoutY="14.0" prefHeight="55.0" prefWidth="192.0" text="INSERTAR PROFESOR" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfInsertarCorreoProf" layoutX="14.0" layoutY="177.0" prefHeight="25.0" prefWidth="252.0" />
+      <Label fx:id="lbCorreoProf" layoutX="14.0" layoutY="143.0" prefHeight="34.0" prefWidth="76.0" text="Correo:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbTelfProf" layoutX="14.0" layoutY="221.0" prefHeight="34.0" prefWidth="76.0" text="Telefono:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="tfInsertarTelefonoProf" layoutX="18.0" layoutY="255.0" prefHeight="25.0" prefWidth="252.0" />
+      <Button fx:id="btInsertar" layoutX="18.0" layoutY="302.0" mnemonicParsing="false" onAction="#insertarProf" prefHeight="55.0" prefWidth="115.0" text="Insertar" />
+      <Button fx:id="btCancelar" layoutX="144.0" layoutY="302.0" mnemonicParsing="false" onAction="#btCancelar" prefHeight="55.0" prefWidth="115.0" text="Cancelar" />
+   </children>
+</Pane>

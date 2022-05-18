@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="fxProfesores" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="1068.0" stylesheets="org/iesalandalus/programacion/reservasaulas/mvc/vista/grafica/recursos/estilo/estilos.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.controladores.ControladorListarProfesores">
+   <children>
+      <ToolBar fx:id="tbOpciones" layoutY="-3.0" prefHeight="64.0" prefWidth="1068.0">
+        <items>
+            <Button fx:id="btAulas" mnemonicParsing="false" onAction="#clickAulas" prefHeight="54.0" prefWidth="330.0" text="Aulas">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fx:id="imgAulas" fitHeight="48.0" fitWidth="95.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/profesor.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btReservas" mnemonicParsing="false" onAction="#clickReservas" prefHeight="54.0" prefWidth="330.0" text="Reservas">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="43.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/lupa.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+          <Button fx:id="btAyuda" mnemonicParsing="false" onAction="#clickAcercaDe" prefHeight="54.0" prefWidth="190.0">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="89.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/acercade.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="btSalir" mnemonicParsing="false" onAction="#clickSalir" prefHeight="54.0" prefWidth="186.0" text="Salir">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="44.0" fitWidth="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../imagenes/salir.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+        </items>
+      </ToolBar>
+      <TableView fx:id="tblProfesores" layoutX="14.0" layoutY="129.0" prefHeight="233.0" prefWidth="1039.0">
+        <columns>
+          <TableColumn fx:id="colNombreProf" prefWidth="327.0" text="Nombre" />
+          <TableColumn fx:id="colCorreoProf" minWidth="0.0" prefWidth="435.0" text="Correo" />
+            <TableColumn fx:id="colTelefonoProf" prefWidth="276.0" text="Telefono" />
+        </columns>
+      </TableView>
+      <Label fx:id="lbProfesores" layoutX="15.0" layoutY="61.0" prefHeight="77.0" prefWidth="187.0" text="Profesores">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <Label fx:id="lbReservasProfesor" layoutX="15.0" layoutY="362.0" prefHeight="77.0" prefWidth="382.0" text="Reservas del Profesor">
+         <font>
+            <Font size="40.0" />
+         </font>
+      </Label>
+      <TableView fx:id="tblReservasProfesor" layoutX="15.0" layoutY="430.0" prefHeight="185.0" prefWidth="1039.0">
+        <columns>
+          <TableColumn fx:id="colAulaReservaProf" prefWidth="412.0" text="Aula" />
+          <TableColumn fx:id="colPermanencia" prefWidth="381.0" text="Permanencia" />
+            <TableColumn fx:id="colPuntosReservaProf" minWidth="0.0" prefWidth="245.0" text="Puntos" />
+        </columns>
+      </TableView>
+      <Button fx:id="btBorrarProf" layoutX="867.0" layoutY="80.0" mnemonicParsing="false" onAction="#borrarProfesor" prefHeight="40.0" prefWidth="186.0" text="Borrar Profesor">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+      <Button fx:id="btInsertarProf" layoutX="681.0" layoutY="80.0" mnemonicParsing="false" onAction="#btInsertarProfesor" prefHeight="40.0" prefWidth="186.0" text="Insertar Profesor">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

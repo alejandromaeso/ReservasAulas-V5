@@ -26,7 +26,7 @@ public interface IReservas {
 	public void borrar(Reserva reserva) throws OperationNotSupportedException;
 
 	public List<String> representar();
-
+	
 	public List<Reserva> getReservasProfesor(Profesor profesor);
 
 	public List<Reserva> getReservasAula(Aula aula);

@@ -36,7 +36,7 @@ public class PermanenciaPorTramo extends Permanencia {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(tramo);
+		return Objects.hash(super.getDia(), tramo);
 	}
 
 	@Override
@@ -55,5 +55,4 @@ public class PermanenciaPorTramo extends Permanencia {
 	public String toString() {
 		return super.toString()+ ", tramo=" + tramo;
 	}
-	
 }

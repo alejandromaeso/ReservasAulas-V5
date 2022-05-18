@@ -92,6 +92,7 @@ public class Reservas implements IReservas {
 		} catch (FileNotFoundException e) {
 			System.out.println("ERROR: No se ha encontrado el fichero.");
 		} catch (IOException e) {
+			System.out.println(e.getLocalizedMessage());
 			System.out.println("ERROR: Ha ocurrido un error inesperado en la E/S.");
 		}
 	}
