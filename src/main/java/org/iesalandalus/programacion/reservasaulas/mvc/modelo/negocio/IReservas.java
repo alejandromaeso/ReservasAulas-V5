@@ -34,4 +34,10 @@ public interface IReservas {
 	public List<Reserva> getReservasPermanencia(Permanencia permanencia);
 
 	public boolean consultarDisponibilidad(Aula aula, Permanencia permanencia);
+
+	public int getTamano();
+
+	public List<Reserva> get(Aula aula);
+
+	public List<Reserva> get(Profesor profesor);
 }

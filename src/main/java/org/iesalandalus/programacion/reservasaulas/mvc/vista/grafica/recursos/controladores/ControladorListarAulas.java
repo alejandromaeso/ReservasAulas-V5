@@ -7,8 +7,10 @@ import javax.naming.OperationNotSupportedException;
 
 import org.iesalandalus.programacion.reservasaulas.mvc.controlador.IControlador;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Aula;
+import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Profesor;
 import org.iesalandalus.programacion.reservasaulas.mvc.modelo.dominio.Reserva;
 import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.recursos.LocalizadorRecursos;
+import org.iesalandalus.programacion.reservasaulas.mvc.vista.grafica.utilidades.Dialogos;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -123,9 +125,12 @@ public class ControladorListarAulas {
 
 	@FXML
 	void btBorrarAula(ActionEvent event) throws OperationNotSupportedException {
-		Aula aula = tblAulas.getSelectionModel().getSelectedItem();
-		controladorMVC.borrarAula(aula);
-		actualizaAulas();
+		if (Dialogos.mostrarDialogoConfirmacion("Borrar", "¿Estás seguro de que desea borrar el aula seleccionada?",
+				null)) {
+			Aula aula = tblAulas.getSelectionModel().getSelectedItem();
+			controladorMVC.borrarAula(aula);
+			actualizaAulas();
+		}
 	}
 
 	private void bloquearVentana() {

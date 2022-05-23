@@ -343,4 +343,22 @@ public class Reservas implements IReservas {
 		}
 		return consulta;
 	}
+
+	@Override
+	public int getTamano() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<Reserva> get(Aula aula) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Reserva> get(Profesor profesor) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

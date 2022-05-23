@@ -241,14 +241,9 @@ public class ControladorListarProfesores {
 			FXMLLoader cargadorAcercaDe = new FXMLLoader(LocalizadorRecursos.class.getResource("vistas/AcercaDe.fxml"));
 			Pane raiz = cargadorAcercaDe.load();
 			ControladorAcercaDe cVentanaPrincipal = cargadorAcercaDe.getController();
-			
-			/*Image image = new Image("../recursos/imagenes/adios.jpg");
-			ImageView imageView = new ImageView();
-			imageView.setImage(image);*/
-			
 
 			cVentanaPrincipal.setControladorMVC(controladorMVC);
-			
+
 			Stage ventana = new Stage();
 
 			Scene escena = new Scene(raiz);
@@ -293,15 +288,18 @@ public class ControladorListarProfesores {
 		}
 
 	}
-	
-    @FXML
-    void borrarProfesor(ActionEvent event) throws OperationNotSupportedException {
-    	
-		Profesor profesor = tblProfesores.getSelectionModel().getSelectedItem();
-		controladorMVC.borrarProfesor(profesor);
-		actualizaProfesores();
 
-    }
+	@FXML
+	void borrarProfesor(ActionEvent event) throws OperationNotSupportedException {
+
+		if (Dialogos.mostrarDialogoConfirmacion("Borrar", "¿Estás seguro de que desea borrar el profesor seleccionado?",
+				null)) {
+
+			Profesor profesor = tblProfesores.getSelectionModel().getSelectedItem();
+			controladorMVC.borrarProfesor(profesor);
+			actualizaProfesores();
+		}
+	}
 
 	@FXML
 	void clickSalir(ActionEvent event) {
